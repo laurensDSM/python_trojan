@@ -2,6 +2,7 @@ import nmap
 
 class Nmap_module:
     def log(self,id):
+        """Nmap draaien van het lokaal netwerk """
         nm = nmap.PortScanner()
 
         # Voer de Nmap-scan uit

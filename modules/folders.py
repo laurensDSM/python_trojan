@@ -2,6 +2,7 @@ import os
 
 class FolderMapper_module():
     def log(self,id):
+        """Functie die map /home gaat loggen helemaal  """
         log_file = f"logs/{id}/log_folders.txt"
 
         home_directory = "/home"
