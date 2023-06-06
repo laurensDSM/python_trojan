@@ -4,11 +4,20 @@
         "class_name": "Default_module"
     },
     {
+        "module_name": "wan",
+        "class_name": "Wan_module"
+    },
+    {
         "module_name": "sysinfo",
         "class_name": "Sysinfo_module"
     },
     {
         "module_name": "folders",
         "class_name": "FolderMapper_module"
+    },
+    {
+        "module_name": "nmap",
+        "class_name": "Nmap_module"
     }
+    
 ]
