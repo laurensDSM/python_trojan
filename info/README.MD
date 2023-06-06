@@ -4,7 +4,7 @@
 ### requirements staan in het mapje info
 ### test repo : https://github.com/laurensDSM/test0
 ## Werking:
-
+- momenteel enkel getest op rocky linux 
 - Als de gebruiker op een gevaarlijke link klikt dan wordt er een bestand op de computer van de gebruiker gezet.
 - Vervolgens zal het script gerund worden. Het programma bevat default deze zaken
     - Main programma 
